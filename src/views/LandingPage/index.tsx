@@ -6,18 +6,11 @@ import { Get_All_Blogs } from "@/services/queries";
 
 const LandingBlogs = () => {
   const { data } = useQuery(Get_All_Blogs);
-  const [blogsData, setblogsData] = useState([{}]);
-
-  useEffect(() => {
-    if (data) {
-      setblogsData(data?.getAllPosts);
-    }
-  }, [data]);
 
   return (
     <div className="w-full grid grid-cols-4 gap-4 justify-items-center items-center">
-      {blogsData.length ? (
-        blogsData.map((item: any) => (
+      {data?.getAllPosts.length ? (
+        data?.getAllPosts.map((item: any) => (
           <Card
             key={item.id}
             title={item.title}
