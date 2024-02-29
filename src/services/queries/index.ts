@@ -10,3 +10,14 @@ export const Get_All_Blogs = gql`
     }
   }
 `;
+
+export const Get_User_Post_Blogs = gql`
+  query GetPostByUser {
+    getPostByUser {
+      body
+      id
+      slug
+      title
+    }
+  }
+`;
