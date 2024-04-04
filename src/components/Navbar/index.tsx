@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 const Navbar = () => {
   const [tokenExists, setTokenExists] = useState(false);
   const router = useRouter();
-  console.log("tokenExists", tokenExists);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
