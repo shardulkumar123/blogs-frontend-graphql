@@ -14,7 +14,8 @@ export const LOGIN_VALIDATION = Yup.object().shape({
 });
 
 export const SIGNUP_VALIDATION = Yup.object().shape({
-  name: Yup.string().required(errorMessage.name),
+  firstName: Yup.string().required(errorMessage.firstname),
+  lastName: Yup.string().required(errorMessage.lastname),
   email: Yup.string()
     .required(errorMessage.email)
     .matches(/^\S.*/, errorMessage.firstCharacter)

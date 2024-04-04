@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -11,9 +12,11 @@ import Button from "@/components/Button";
 import { LOGIN_VALIDATION } from "@/validations/loginValidation";
 import { PlaceholderData } from "@/constants/placeholders";
 import { ILoginFormData } from "@/interfaces";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [createLoginToken, { data }] = useMutation(UserLogin);
+  const router = useRouter();
 
   useEffect(() => {
     if (data) {
@@ -39,7 +42,11 @@ const Login = () => {
           password,
         },
       });
-      if (res) reset();
+      if (res) {
+        reset();
+        router.push("/");
+        toast.success(`Welcome back ${email}!`);
+      }
     } catch (error) {
       error;
     }
@@ -47,7 +54,7 @@ const Login = () => {
 
   return (
     <div className="w-full min-h-screen bg-slate-400 flex flex-cols justify-center items-center">
-      <div className="border-2 h-80 w-1/3 flex flex-col justify-center items-center gap-6 rounded-xl">
+      <div className="border-2 h-[calc(100vh - 20px)] w-1/3 p-4 flex flex-col justify-center items-center gap-6 rounded-xl">
         <div className="text-4xl">Login</div>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -72,7 +79,10 @@ const Login = () => {
           </div>
           <Button name="login" label="Submit" type="submit" />
         </form>
-        <span className="hover:text-slate-500 cursor-pointer">
+        <span
+          className="hover:text-slate-500 cursor-pointer"
+          onClick={() => router.push("/registration")}
+        >
           create a new account ?
         </span>
       </div>

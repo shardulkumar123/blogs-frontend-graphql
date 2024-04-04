@@ -5,8 +5,15 @@ import Card from "@/components/card";
 import { Get_All_Blogs } from "@/services/queries";
 
 const LandingBlogs = () => {
-  const { data } = useQuery(Get_All_Blogs);
-  console.log("data", data);
+  const { data, refetch } = useQuery(Get_All_Blogs);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [refetch]);
 
   return (
     <div className="w-full grid grid-cols-4 gap-4 justify-items-center items-center">

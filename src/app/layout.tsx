@@ -1,10 +1,11 @@
 "use client";
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "@/services/apollo-client";
 import Navbar from "@/components/Navbar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ApolloProvider client={client}>
-        <body className={inter.className}>
+        <body className={`${inter.className} bg-slate-700`}>
+          <ToastContainer />
           <Navbar />
           {children}
         </body>

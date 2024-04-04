@@ -1,18 +1,24 @@
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [tokenExists, setTokenExists] = useState(false);
+  const router = useRouter();
+  console.log("tokenExists", tokenExists);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) setTokenExists(true);
-  }, [tokenExists]);
+    setTokenExists(!!token);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setTokenExists(false);
+    router.push("/");
+    toast.success("You have been logged out successfully!");
   };
 
   return (
@@ -80,7 +86,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/"
-                  className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                  className="block py-2 px-3 text-white  rounded md:bg-transparent  md:p-0 "
                   aria-current="page"
                 >
                   Home

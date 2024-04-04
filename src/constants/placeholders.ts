@@ -1,5 +1,7 @@
 export const PlaceholderData = {
-  email: "Enter Email",
-  password: "Enter Password",
-  name: "Enter Name",
+  email: "Email",
+  password: "Password",
+  name: "Name",
+  firstName: "First Name",
+  lastName: "Last Name",
 };

@@ -2,8 +2,10 @@ import LandingBlogs from "@/views/LandingPage";
 
 export default function Home() {
   return (
-    <div className="w-full flex flex-col my-20 px-20">
-      <div className="w-full text-center">All Latest Blogs</div>
+    <div className="w-full flex flex-col my-20 px-20 items-center">
+      <div className="text-4xl font-extrabold my-10 dark:text-white">
+        All Latest Blogs
+      </div>
       <LandingBlogs />
     </div>
   );
