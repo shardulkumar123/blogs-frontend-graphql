@@ -16,19 +16,24 @@ const LandingBlogs = () => {
   }, [refetch]);
 
   return (
-    <div className="w-full grid grid-cols-4 gap-4 justify-items-center items-center">
+    <div className="w-full justify-center items-center">
       {data?.getAllPosts.length ? (
-        data?.getAllPosts.map((item: any) => (
-          <Card
-            key={item.id}
-            title={item.title}
-            description={item.body}
-            slug={`blogs/${item.id}`}
-          />
-        ))
+        <div className="w-full grid grid-cols-4 gap-4 justify-items-center items-center">
+          {data?.getAllPosts.slice(0, 10).map((item: any) => (
+            <Card
+              key={item.id}
+              title={item.title}
+              description={item.body}
+              slug={`blogs/${item.id}`}
+            />
+          ))}
+        </div>
       ) : (
-        <div className="text-center">
-          <h2>No Data</h2>
+        <div className="w-full h-[calc(100vh - 20px)] flex justify-center items-center">
+          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            No
+            <span className="text-blue-600 dark:text-blue-500"> Blogs</span>
+          </h1>
         </div>
       )}
     </div>

@@ -59,7 +59,7 @@ const Blogs = () => {
         <ErrorValidationMessage errorMessage={errors?.body?.message} />
         <Button name="post" label="Post" type="submit" />
       </form>
-      <div className="w-full grid grid-cols-4 gap-4 pt-10 px-5 justify-items-center items-center">
+      {/* <div className="w-full grid grid-cols-4 gap-4 pt-10 px-5 justify-items-center items-center">
         {data?.getPostByUser.length ? (
           data?.getPostByUser.map((item: any) => (
             <Card
@@ -71,7 +71,31 @@ const Blogs = () => {
           ))
         ) : (
           <div className="text-center">
-            <h2>No Data</h2>
+            <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+              No
+              <span className="text-blue-600 dark:text-blue-500"> Blogs</span>
+            </h1>
+          </div>
+        )}
+      </div> */}
+      <div className="w-full justify-center items-center ">
+        {data?.getPostByUser.length ? (
+          <div className="w-full grid grid-cols-4 gap-4 justify-items-center items-center">
+            {data?.getPostByUser.map((item: any) => (
+              <Card
+                key={item.id}
+                title={item.title}
+                description={item.body}
+                slug={`blogs/${item.id}`}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="w-full h-[calc(100vh - 20px)] flex justify-center items-center my-20 ">
+            <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white ">
+              No
+              <span className="text-blue-600 dark:text-blue-500"> Blogs</span>
+            </h1>
           </div>
         )}
       </div>
