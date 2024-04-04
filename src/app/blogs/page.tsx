@@ -9,13 +9,13 @@ const Blogs = () => {
 
   return (
     <div className="w-full grid grid-cols-4 gap-4 justify-items-center items-center">
-      {data?.getAllPosts.length ? (
-        data?.getAllPosts.map((item: any) => (
+      {data?.getPostByUser.length ? (
+        data?.getPostByUser.map((item: any) => (
           <Card
             key={item.id}
             title={item.title}
             description={item.body}
-            slug={`blogs${item.slug}`}
+            slug={`blogs${item.id}`}
           />
         ))
       ) : (

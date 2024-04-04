@@ -6,6 +6,7 @@ import { Get_All_Blogs } from "@/services/queries";
 
 const LandingBlogs = () => {
   const { data } = useQuery(Get_All_Blogs);
+  console.log("data", data);
 
   return (
     <div className="w-full grid grid-cols-4 gap-4 justify-items-center items-center">
@@ -15,7 +16,7 @@ const LandingBlogs = () => {
             key={item.id}
             title={item.title}
             description={item.body}
-            slug={`blogs${item.slug}`}
+            slug={`blogs/${item.id}`}
           />
         ))
       ) : (

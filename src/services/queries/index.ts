@@ -6,7 +6,16 @@ export const Get_All_Blogs = gql`
       id
       title
       body
-      slug
+    }
+  }
+`;
+
+export const Get_Blog = gql`
+  query GetPost($id: String!) {
+    getPostById(id: $id) {
+      id
+      title
+      body
     }
   }
 `;
@@ -16,7 +25,6 @@ export const Get_User_Post_Blogs = gql`
     getPostByUser {
       body
       id
-      slug
       title
     }
   }
