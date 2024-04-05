@@ -13,9 +13,14 @@ import { LOGIN_VALIDATION } from "@/validations/loginValidation";
 import { PlaceholderData } from "@/constants/placeholders";
 import { ILoginFormData } from "@/interfaces";
 import { toast } from "react-toastify";
+import { useAuth } from "@/context/auth";
+import { useLoader } from "@/context/loader";
 
 const Login = () => {
-  const [createLoginToken, { data }] = useMutation(UserLogin);
+  const { setLoggedIn } = useAuth();
+  const { setLoader } = useLoader();
+  const [createLoginToken, { data, loading }] = useMutation(UserLogin);
+  console.log("loading", loading);
   const router = useRouter();
 
   useEffect(() => {
@@ -23,6 +28,11 @@ const Login = () => {
       localStorage.setItem("token", data.createLoginToken);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (loading) setLoader(true);
+    else setLoader(false);
+  }, [loading, setLoader]);
 
   const {
     control,
@@ -45,6 +55,7 @@ const Login = () => {
       if (res) {
         reset();
         router.push("/");
+        setLoggedIn(true);
         toast.success(`Welcome back ${email}!`);
       }
     } catch (error) {

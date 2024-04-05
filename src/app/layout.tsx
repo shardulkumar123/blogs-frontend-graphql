@@ -6,7 +6,8 @@ import { client } from "@/services/apollo-client";
 import Navbar from "@/components/Navbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import AuthProvider from "@/context/auth";
+import LoaderProvider, { useLoader } from "@/context/loader";
 const inter = Inter({ subsets: ["latin"] });
 
 // export const metadata: Metadata = {
@@ -19,14 +20,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { loader } = useLoader();
   return (
     <html lang="en">
       <ApolloProvider client={client}>
-        <body className={`${inter.className} bg-slate-700`}>
-          <ToastContainer />
-          <Navbar />
-          {children}
-        </body>
+        <LoaderProvider>
+          <AuthProvider>
+            <body className={`${inter.className} bg-slate-700 `}>
+              <ToastContainer />
+              <Navbar />
+              {children}
+            </body>
+          </AuthProvider>
+        </LoaderProvider>
       </ApolloProvider>
     </html>
   );

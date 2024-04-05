@@ -11,10 +11,18 @@ import { SIGNUP_VALIDATION } from "@/validations/loginValidation";
 import { PlaceholderData } from "@/constants/placeholders";
 import { ISignUpFormData } from "@/interfaces";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
+import { useLoader } from "@/context/loader";
 
 const Registration = () => {
-  const [createUser] = useMutation(UserSignUp);
+  const { setLoader } = useLoader();
+  const [createUser, { loading }] = useMutation(UserSignUp);
   const router = useRouter();
+
+  useEffect(() => {
+    if (loading) setLoader(true);
+    else setLoader(false);
+  }, [loading, setLoader]);
 
   const {
     control,
@@ -38,7 +46,8 @@ const Registration = () => {
       });
       if (res) {
         reset();
-        router.push("/");
+        router.push("/login");
+        setLoader(false);
         toast.success("Account created successfully!");
       }
     } catch (error: any) {
