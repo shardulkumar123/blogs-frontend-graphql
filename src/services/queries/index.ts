@@ -6,6 +6,7 @@ export const Get_All_Blogs = gql`
       id
       title
       body
+      created_at
     }
   }
 `;
@@ -16,6 +17,7 @@ export const Get_Blog = gql`
       id
       title
       body
+      created_at
     }
   }
 `;
@@ -26,6 +28,7 @@ export const Get_User_Post_Blogs = gql`
       body
       id
       title
+      created_at
     }
   }
 `;

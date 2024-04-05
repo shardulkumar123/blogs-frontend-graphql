@@ -8,6 +8,7 @@ import { useLoader } from "@/context/loader";
 const LandingBlogs = () => {
   const { setLoader } = useLoader();
   const { data, refetch, loading } = useQuery(Get_All_Blogs);
+  console.log("data", data);
 
   useEffect(() => {
     if (loading) setLoader(true);
@@ -32,6 +33,7 @@ const LandingBlogs = () => {
               title={item.title}
               description={item.body}
               slug={`blogs/${item.id}`}
+              created_at={item.created_at}
             />
           ))}
         </div>
